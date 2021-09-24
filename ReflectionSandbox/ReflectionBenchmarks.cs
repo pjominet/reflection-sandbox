@@ -11,7 +11,7 @@ namespace ReflectionSandbox
     {
         private IEnumerable<Dictionary<string, string>> _mappingInfos;
 
-        private static IEnumerable<Dictionary<string, string>> GeneratedMappingInfos(int iterations = 10000)
+        private static IEnumerable<Dictionary<string, string>> GeneratedMappingInfos(int iterations = 50000)
         {
             var currentDateString = DateTime.Now.ToString("d");
 
@@ -21,7 +21,7 @@ namespace ReflectionSandbox
                 {
                     { "CustomIdentifier", $"{i}" },
                     { "Label", "Foo" },
-                    { "Value", $"{7d / i}" },
+                    { "Value", $"{777d / i}" },
                     { "CreatedOn", currentDateString },
                     { "IsDeleted", "false" },
                     { "Foo", "" },
