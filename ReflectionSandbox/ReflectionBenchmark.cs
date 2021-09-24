@@ -5,19 +5,15 @@ using BenchmarkDotNet.Attributes;
 namespace ReflectionSandbox
 {
     [MemoryDiagnoser]
+    [RankColumn]
     public class ReflectionBenchmark
     {
-        private readonly string _currentDateString = DateTime.Now.ToString("d");
-        private readonly IEnumerable<Dictionary<string, string>> _mappingInfos;
+        private IEnumerable<Dictionary<string, string>> _mappingInfos;
 
-        public ReflectionBenchmark(int iterations = 10000)
+        private static IEnumerable<Dictionary<string, string>> GeneratedMappingInfos(int iterations = 10000)
         {
-            _mappingInfos = GeneratedMappingInfos(iterations);
-        }
+            var currentDateString = DateTime.Now.ToString("d");
 
-        [GlobalSetup]
-        private IEnumerable<Dictionary<string, string>> GeneratedMappingInfos(int iterations)
-        {
             for (var i = 1; i <= iterations; i++)
             {
                 yield return new Dictionary<string, string>
@@ -25,7 +21,7 @@ namespace ReflectionSandbox
                     { "CustomIdentifier", $"{i}" },
                     { "Label", "Foo" },
                     { "Value", $"{7d / i}" },
-                    { "CreatedOn", _currentDateString },
+                    { "CreatedOn", currentDateString },
                     { "IsDeleted", "false" },
                     { "Foo", "" },
                     { "Bar", "" },
@@ -36,64 +32,23 @@ namespace ReflectionSandbox
             }
         }
 
-        [Benchmark]
-        public List<Model> GenerateModelsByHand()
+        public ReflectionBenchmark()
         {
-            var models = new List<Model>();
-            foreach (var mappingInfo in _mappingInfos)
-            {
-                try
-                {
-                    var model = new Model();
-                    foreach (var (target, value) in mappingInfo)
-                        model.MapProperty(target, value);
-                    models.Add(model);
-                }
-                catch (ApplicationException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-
-            return models;
+            _mappingInfos = GeneratedMappingInfos();
         }
 
-        [Benchmark]
-        public List<Model> GenerateModelsByReflection()
+        [GlobalSetup]
+        public void Setup()
         {
-            var models = new List<Model>();
-            foreach (var mappingInfo in _mappingInfos)
-            {
-                try
-                {
-                    models.Add(Model.MapPropertiesByReflection(mappingInfo));
-                }
-                catch (ApplicationException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-
-            return models;
+            _mappingInfos = GeneratedMappingInfos();
         }
 
-        [Benchmark]
-        public List<Model> GenerateModelsByReflectionHelper()
-        {
-            var models = new List<Model>();
-            foreach (var mappingInfo in _mappingInfos)
-            {
-                try
-                {
-                    models.Add(ReflectionHelper<Model>.MapPropertiesByReflectionHelper(mappingInfo));
-                }
-                catch (ApplicationException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
+        [Benchmark] public List<Model> GenerateModelsByHand() => ModelGenerators.GenerateModelsByHand(_mappingInfos);
 
-            return models;
-        }
+        [Benchmark] public List<Model> GenerateModelsByReflectionWithAttributes() => ModelGenerators.GenerateModelsByReflectionWithAttributes(_mappingInfos);
+
+        [Benchmark] public List<Model> GenerateModelsByReflectionWithoutAttributes() => ModelGenerators.GenerateModelsByReflectionWithoutAttributes(_mappingInfos);
+
+        //[Benchmark] public List<Model> GenerateModelsByReflectionWithDelegateWithoutAttributes() => ModelGenerators.GenerateModelsByReflectionWithDelegateWithoutAttributes(_mappingInfos);
     }
 }

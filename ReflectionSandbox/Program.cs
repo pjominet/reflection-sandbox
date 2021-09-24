@@ -7,16 +7,15 @@ namespace ReflectionSandbox
     {
         static void Main(string[] args)
         {
-            /*var benchmark = new ReflectionBenchmark();
-            Console.WriteLine("------- by reflection -------");
-            foreach (var model in benchmark.GenerateModelsByReflection())
+#if DEBUG
+            var benchmark = new ReflectionBenchmark();
+            foreach (var model in benchmark.GenerateModelsByReflectionWithoutAttributes())
                 Console.WriteLine(model);
+#endif
 
-            Console.WriteLine("------- by hand -------");
-            foreach (var model in benchmark.GenerateModelsByHand())
-                Console.WriteLine(model);*/
-
+#if RELEASE
             BenchmarkRunner.Run<ReflectionBenchmark>();
+#endif
         }
     }
 }
