@@ -34,7 +34,7 @@ namespace ReflectionSandbox
             {
                 try
                 {
-                    models.Add(Model.MapByReflectionWithAttributes(mappingInfo));
+                    models.Add(Model.MapWithAttributes(mappingInfo));
                 }
                 catch (ApplicationException ex)
                 {
@@ -52,7 +52,7 @@ namespace ReflectionSandbox
             {
                 try
                 {
-                    models.Add(Model.MapByReflectionWithoutAttributes(mappingInfo));
+                    models.Add(Model.MapWithoutAttributes(mappingInfo));
                 }
                 catch (ApplicationException ex)
                 {
@@ -63,14 +63,14 @@ namespace ReflectionSandbox
             return models;
         }
 
-        public static List<Model> GenerateModelsByReflectionWithDelegateWithoutAttributes(IEnumerable<Dictionary<string, string>> mappingInfos)
+        public static List<Model> GenerateModelsByReflectionWithDelegates(IEnumerable<Dictionary<string, string>> mappingInfos)
         {
             var models = new List<Model>();
             foreach (var mappingInfo in mappingInfos)
             {
                 try
                 {
-                    models.Add(Model.MapByReflectionWithDelegateWithoutAttributes(mappingInfo));
+                    models.Add(Model.MapWithDelegateWithoutAttributes(mappingInfo));
                 }
                 catch (ApplicationException ex)
                 {

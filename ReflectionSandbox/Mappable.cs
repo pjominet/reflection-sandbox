@@ -43,7 +43,7 @@ namespace ReflectionSandbox
         private static readonly IEnumerable<PropertyInfo> CachedProperties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
         private static readonly IEnumerable<PropertyHelper<T>> CachedPropertyHelpers = PropertyHelper<T>.GetProperties();
 
-        public static T MapByReflectionWithAttributes(Dictionary<string, string> mappingInfo)
+        public static T MapWithAttributes(Dictionary<string, string> mappingInfo)
         {
             var t = new T();
             foreach (var (target, value) in mappingInfo)
@@ -96,7 +96,7 @@ namespace ReflectionSandbox
             return t;
         }
 
-        public static T MapByReflectionWithoutAttributes(Dictionary<string, string> mappingInfo)
+        public static T MapWithoutAttributes(Dictionary<string, string> mappingInfo)
         {
             var t = new T();
             foreach (var (target, value) in mappingInfo)
@@ -148,7 +148,7 @@ namespace ReflectionSandbox
             return t;
         }
 
-        public static T MapByReflectionWithDelegateWithoutAttributes(Dictionary<string, string> mappingInfo)
+        public static T MapWithDelegateWithoutAttributes(Dictionary<string, string> mappingInfo)
         {
             var t = new T();
             foreach (var (target, value) in mappingInfo)
