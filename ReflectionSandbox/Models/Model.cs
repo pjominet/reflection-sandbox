@@ -1,6 +1,7 @@
-using System;
+﻿using System;
+using ReflectionSandbox.Mapping;
 
-namespace ReflectionSandbox
+namespace ReflectionSandbox.Models
 {
     public class Model : Mappable<Model>, IMappable
     {

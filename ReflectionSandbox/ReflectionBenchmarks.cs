@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using ReflectionSandbox.Models;
 
 namespace ReflectionSandbox
 {
     [MemoryDiagnoser]
     [RankColumn]
-    public class ReflectionBenchmark
+    public class ReflectionBenchmarks
     {
         private IEnumerable<Dictionary<string, string>> _mappingInfos;
 
@@ -32,7 +33,7 @@ namespace ReflectionSandbox
             }
         }
 
-        public ReflectionBenchmark()
+        public ReflectionBenchmarks()
         {
             _mappingInfos = GeneratedMappingInfos();
         }
@@ -49,6 +50,6 @@ namespace ReflectionSandbox
 
         [Benchmark] public List<Model> GenerateModelsByReflectionWithoutAttributes() => ModelGenerators.GenerateModelsByReflectionWithoutAttributes(_mappingInfos);
 
-        //[Benchmark] public List<Model> GenerateModelsByReflectionWithDelegateWithoutAttributes() => ModelGenerators.GenerateModelsByReflectionWithDelegateWithoutAttributes(_mappingInfos);
+        //[Benchmark] public List<ModelForDelegates> GenerateModelsByReflectionWithDelegates() => ModelGenerators.GenerateModelsByReflectionWithDelegates(_mappingInfos);
     }
 }

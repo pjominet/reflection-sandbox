@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ReflectionSandbox.Models;
 
 namespace ReflectionSandbox
 {
@@ -63,14 +64,14 @@ namespace ReflectionSandbox
             return models;
         }
 
-        public static List<Model> GenerateModelsByReflectionWithDelegates(IEnumerable<Dictionary<string, string>> mappingInfos)
+        public static List<ModelForDelegates> GenerateModelsByReflectionWithDelegates(IEnumerable<Dictionary<string, string>> mappingInfos)
         {
-            var models = new List<Model>();
+            var models = new List<ModelForDelegates>();
             foreach (var mappingInfo in mappingInfos)
             {
                 try
                 {
-                    models.Add(Model.MapWithDelegateWithoutAttributes(mappingInfo));
+                    models.Add(ModelForDelegates.MapWithDelegate(mappingInfo));
                 }
                 catch (ApplicationException ex)
                 {

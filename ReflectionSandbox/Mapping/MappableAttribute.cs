@@ -1,6 +1,6 @@
 using System;
 
-namespace ReflectionSandbox
+namespace ReflectionSandbox.Mapping
 {
     public enum PropertyType
     {
