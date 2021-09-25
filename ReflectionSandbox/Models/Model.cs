@@ -1,8 +1,10 @@
 ﻿using System;
+//using CodeGenerators;
 using ReflectionSandbox.Mapping;
 
 namespace ReflectionSandbox.Models
 {
+    //[SwitchGeneration]
     public class Model : Mappable<Model>, IMappable
     {
         public int Id { get; set; }

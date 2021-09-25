@@ -2,11 +2,18 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
+        <LangVersion>default</LangVersion>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CodeGenerators\CodeGenerators.csproj"
+                        ReferenceOutputAssembly="false"
+                        OutputItemType="Analyzer"/>
     </ItemGroup>
 
 </Project>

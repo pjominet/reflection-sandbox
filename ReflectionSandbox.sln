@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionSandbox", "ReflectionSandbox\ReflectionSandbox.csproj", "{FAEBFD34-79CE-4B7B-8C8D-FEC1214751F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGenerators", "CodeGenerators\CodeGenerators.csproj", "{A5067BBF-B76F-400D-8811-3CDAED879656}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{FAEBFD34-79CE-4B7B-8C8D-FEC1214751F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAEBFD34-79CE-4B7B-8C8D-FEC1214751F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAEBFD34-79CE-4B7B-8C8D-FEC1214751F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5067BBF-B76F-400D-8811-3CDAED879656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5067BBF-B76F-400D-8811-3CDAED879656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5067BBF-B76F-400D-8811-3CDAED879656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5067BBF-B76F-400D-8811-3CDAED879656}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
