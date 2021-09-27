@@ -74,7 +74,7 @@ namespace ReflectionSandbox.Mapping
             {
                 var prop = CachedProperties.FirstOrDefault(p => p.Name == target);
                 if (prop == null)
-                    throw new ApplicationException($"{target} does not exist in {nameof(t)}");
+                    throw new ApplicationException($"{target} does not exist in {t.GetType().FullName}");
 
                 if (string.IsNullOrWhiteSpace(value))
                 {
